@@ -9,11 +9,11 @@ namespace CalculadoraWeb
 {
     public partial class LayoutCalculadora : System.Web.UI.Page
     {
-        public int valor1 { get; set; }
-
+        int valor1 = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
+            //Session["Valor"];
         }
 
         protected void btn1_Click(object sender, EventArgs e)
@@ -30,15 +30,15 @@ namespace CalculadoraWeb
 
         protected void btnMias_Click(object sender, EventArgs e)
         {
-            valor1 = Convert.ToInt32(txtDisplay.Text);
+            Session["Valor"] = txtDisplay.Text;
             txtDisplay.Text = string.Empty;
         }
 
         protected void btnIgual_Click(object sender, EventArgs e)
         {
             int resultado = 0;
-
-            resultado = valor1 + int.Parse(txtDisplay.Text);
+            
+            resultado = (int.Parse(Session["Valor"].ToString())) + int.Parse(txtDisplay.Text);
             txtDisplay.Text = resultado.ToString();
         }
     }
